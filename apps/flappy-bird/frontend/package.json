@@ -1,0 +1,12 @@
+{
+  "name": "flappy-bird-frontend",
+  "version": "1.0.0",
+  "description": "Static server for the Flappy Bird style game frontend, linked to the FastAPI backend for high scores.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

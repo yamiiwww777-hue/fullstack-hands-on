@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>Flappy Byte</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app">
+    <div id="game-wrap">
+      <canvas id="game" width="400" height="600"></canvas>
+
+      <!-- HUD shown only during gameplay -->
+      <div id="hud">
+        <span id="score">0</span>
+        <button id="pause-btn" title="Pause">❚❚</button>
+      </div>
+
+      <!-- Main menu -->
+      <div id="menu-screen" class="overlay">
+        <h1>Flappy Byte</h1>
+        <p class="tagline">Tap, flap, don't crash.</p>
+
+        <div class="stat-row">
+          <div class="stat">
+            <span class="stat-label">High Score</span>
+            <span class="stat-value" id="menu-highscore">0</span>
+          </div>
+        </div>
+
+        <div class="difficulty-row">
+          <button class="diff-btn" data-diff="easy">Easy</button>
+          <button class="diff-btn selected" data-diff="medium">Medium</button>
+          <button class="diff-btn" data-diff="hard">Hard</button>
+        </div>
+
+        <button id="start-btn" class="primary-btn">Start</button>
+        <button id="how-to-play-btn" class="ghost-btn">How to Play</button>
+
+        <div class="leaderboard">
+          <h3>Leaderboard</h3>
+          <ol id="leaderboard-list"><li class="muted">Loading…</li></ol>
+        </div>
+
+        <div class="settings-row">
+          <button id="sound-toggle" class="icon-btn" title="Toggle sound effects">🔊</button>
+          <button id="music-toggle" class="icon-btn" title="Toggle music">🎵</button>
+          <button id="vibration-toggle" class="icon-btn" title="Toggle vibration">📳</button>
+          <button id="theme-toggle" class="icon-btn" title="Toggle day/night">☀️</button>
+          <button id="reset-highscore-btn" class="icon-btn" title="Reset high score">♻️</button>
+        </div>
+      </div>
+
+      <!-- Tutorial overlay -->
+      <div id="tutorial-screen" class="overlay hidden">
+        <h2>How to Play</h2>
+        <ul class="tutorial-list">
+          <li>🖱️ / 👆 Tap the screen or press <b>Space</b> to flap</li>
+          <li>🚧 Fly through the gaps between the pipes</li>
+          <li>⭐ Score a point for every pipe you clear</li>
+          <li>💥 Hitting a pipe or the ground ends the run</li>
+        </ul>
+        <button id="tutorial-close-btn" class="primary-btn">Got it</button>
+      </div>
+
+      <!-- Countdown before play starts -->
+      <div id="countdown-screen" class="overlay hidden">
+        <div id="countdown-number">3</div>
+      </div>
+
+      <!-- Pause overlay -->
+      <div id="pause-screen" class="overlay hidden">
+        <h2>Paused</h2>
+        <button id="resume-btn" class="primary-btn">Resume</button>
+        <button id="pause-menu-btn" class="ghost-btn">Main Menu</button>
+      </div>
+
+      <!-- Game over overlay -->
+      <div id="gameover-screen" class="overlay hidden">
+        <h2>Game Over</h2>
+        <div id="new-highscore-msg" class="hidden">🏆 New High Score!</div>
+        <div class="stat-row">
+          <div class="stat">
+            <span class="stat-label">Score</span>
+            <span class="stat-value" id="final-score">0</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Best</span>
+            <span class="stat-value" id="final-highscore">0</span>
+          </div>
+        </div>
+        <button id="retry-btn" class="primary-btn">Retry</button>
+        <button id="share-btn" class="ghost-btn">Share Score</button>
+        <button id="gameover-menu-btn" class="ghost-btn">Main Menu</button>
+      </div>
+
+      <div id="toast" class="hidden"></div>
+    </div>
+  </div>
+
+  <script src="/config.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>

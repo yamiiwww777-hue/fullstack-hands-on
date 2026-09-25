@@ -1,0 +1,29 @@
+services:
+  backend:
+    build: ./backend
+    container_name: flappy-bird-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - CORS_ORIGINS=*
+      - DATA_FILE=/app/data/scores.json
+    volumes:
+      - backend_data:/app/data
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    container_name: flappy-bird-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      # This is what "links" the frontend to the backend: the browser
+      # (not the frontend container) calls this URL directly, so it must
+      # be an address reachable from the player's machine.
+      - API_BASE_URL=http://localhost:8000
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  backend_data:
